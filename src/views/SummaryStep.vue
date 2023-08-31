@@ -71,7 +71,6 @@ export default {
       this.$emit('changePlan')
     },
     countPrice() {
-      // console.log(this.formData.planPrice , this.formData.onlineServicePrice , this.formData.largeStoragePrice, this.formData.customizableProfilePrice)
       return this.formData.planPrice + this.formData.onlineServicePrice + this.formData.largeStoragePrice+ this.formData.customizableProfilePrice
     }
   }

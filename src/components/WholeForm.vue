@@ -46,7 +46,7 @@ import ThankYou from '../views/ThankYou.vue'
 export default {
   data() {
     return {
-      step: 2,
+      step: 1,
       formData: {
         name: '',
         email: '',
@@ -71,16 +71,8 @@ export default {
       }
     },
     updateFormData(key, value) {
-    //   if (key === 'largeStoragePrice' && this.formData.largeStorage) {
-    //   this.formData[key] = value;
-    // } else if (key === 'customizableProfilePrice' && this.formData.customizableProfile) {
-    //   this.formData[key] = value;
-    // } else if (key === 'onlineServicePrice' && this.formData.onlineService) {
-    //   this.formData[key] = value;
-    // } else {
       this.formData[key] = value;
-    // }
-      console.log( this.formData.largeStoragePrice, this.formData.customizableProfilePrice)
+      // console.log( this.formData.planPrice)
     },
     goBack() {
       this.step--

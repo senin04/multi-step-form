@@ -79,16 +79,21 @@ export default {
       const updatedPaidMonthly = !this.formData.paidMonthly
       this.$emit('updateFormData', 'paidMonthly', updatedPaidMonthly)
       if (this.formData.onlineService) {
-    this.$emit('updateFormData', 'onlineServicePrice', updatedPaidMonthly ? 1 : 10);
-  }
-  
-  if (this.formData.largeStorage) {
-    this.$emit('updateFormData', 'largeStoragePrice', updatedPaidMonthly ? 2 : 20);
-  }
-  
-  if (this.formData.customizableProfile) {
-    this.$emit('updateFormData', 'customizableProfilePrice', updatedPaidMonthly ? 2 : 20);
-  }
+        this.$emit('updateFormData', 'onlineServicePrice', updatedPaidMonthly ? 1 : 10)
+      }
+
+      if (this.formData.largeStorage) {
+        this.$emit('updateFormData', 'largeStoragePrice', updatedPaidMonthly ? 2 : 20)
+      }
+
+      if (this.formData.customizableProfile) {
+        this.$emit('updateFormData', 'customizableProfilePrice', updatedPaidMonthly ? 2 : 20)
+      }
+      const activePlan = this.plans.find((plan) => plan.active)
+      if (activePlan) {
+        const planPrice = updatedPaidMonthly ? activePlan.monthlyBilling : activePlan.yearlyBilling
+        this.$emit('updateFormData', 'planPrice', planPrice)
+      }
     },
     updateActivePlan(name) {
       for (let i = 0; i < this.plans.length; i++) {
