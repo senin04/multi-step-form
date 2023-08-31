@@ -46,7 +46,7 @@ import ThankYou from '../views/ThankYou.vue'
 export default {
   data() {
     return {
-      step: 4,
+      step: 2,
       formData: {
         name: '',
         email: '',
