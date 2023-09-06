@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="containerOne">
     <ul>
       <li>
         <div class="number" :class="{ active: stepNumber === 0 }">1</div>
@@ -51,13 +51,18 @@ export default {
 </script>
 
 <style scoped>
-.container {
+.containerOne {
   color: hsl(0, 0%, 100%);
   background-image: url('./images/bg-sidebar-desktop.svg');
   width: 274px;
   padding: 30px;
+  background-repeat: no-repeat;
 }
 
+ul {
+  display: flex;
+  flex-direction: column;
+}
 li {
   display: flex;
   overflow: hidden;
@@ -87,5 +92,26 @@ li {
   background-color: hsl(206, 94%, 87%);
   border-color: hsl(206, 94%, 87%);
   color: black;
+}
+
+@media only screen and (max-width: 1000px) {
+  .containerOne {
+    position: absolute;
+    top: 0;
+    left:0;
+    z-index: 1;
+    height: 240px;
+    width: 100%;
+    background-position: center bottom 10% ;
+    background-size: 100%;
+    border-radius: none;
+  }
+  ul {
+    justify-content: space-evenly;
+    flex-direction: row;
+  }
+  .step {
+    display: none;
+  }
 }
 </style>

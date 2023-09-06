@@ -1,11 +1,16 @@
 <template>
-    <button >
+    <button @click="goNext" >
         Next Step
     </button>
 </template>
 
 <script>
     export default {
+        methods: {
+            goNext() {
+                this.$emit("goNext")
+            }
+        }
     }
 </script>
 

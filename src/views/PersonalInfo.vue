@@ -1,9 +1,11 @@
 <template>
-  <div>
+  <div class="personal-info">
     <HeaderMain title="Personal info"></HeaderMain>
-    <ParagraphMain title="Please provide your name, email address, and phone number."></ParagraphMain>
+    <ParagraphMain
+      title="Please provide your name, email address, and phone number."
+    ></ParagraphMain>
     <form action="" @submit.prevent="next">
-      <div class="flex-end" >
+      <div class="flex-end">
         <label for="name">Name</label>
         <!-- <div class="error">This Field is required</div> -->
       </div>
@@ -28,27 +30,31 @@
         :value="formData.phone"
         @input="$emit('updateFormData', 'phone', $event.target.value)"
       />
-      <NextBtn />
+      <!-- <NextBtn /> -->
     </form>
   </div>
 </template>
 
 <script>
-import NextBtn from '../components/NextBtn.vue'
-import HeaderMain from '../components/HeaderMain.vue';
-import ParagraphMain from '../components/ParagraphMain.vue';
+// import NextBtn from '../components/NextBtn.vue'
+import HeaderMain from '../components/HeaderMain.vue'
+import ParagraphMain from '../components/ParagraphMain.vue'
 export default {
-  components: { NextBtn, HeaderMain, ParagraphMain },
+  components: {  HeaderMain, ParagraphMain },
   props: ['formData'],
-  methods: {
-    next() {
-      this.$emit('next')
-    }
-  }
+  // methods: {
+  //   next() {
+  //     this.$emit('next')
+  //   }
+  // }
 }
 </script>
 
 <style scoped>
+.personal-info {
+  position: relative;
+  z-index: 2;
+}
 form {
   display: flex;
   flex-direction: column;
@@ -79,4 +85,3 @@ input:focus {
   justify-content: space-between;
 }
 </style>
-

@@ -23,21 +23,21 @@
           <p :class="{ active: !formData.paidMonthly }">Yearly</p>
         </div>
       </div>
-      <div>
+      <!-- <div>
         <BackBtn @goBack="goBack" />
         <NextBtn />
-      </div>
+      </div> -->
     </form>
   </div>
 </template>
 
 <script>
-import NextBtn from '../components/NextBtn.vue'
+// import NextBtn from '../components/NextBtn.vue'
 import HeaderMain from '../components/HeaderMain.vue'
 import ParagraphMain from '../components/ParagraphMain.vue'
 import PlanStyle from '../components/PlanStyle.vue'
 import toggleSwitch from '../components/toggle-switch.vue'
-import BackBtn from '../components/BackBtn.vue'
+// import BackBtn from '../components/BackBtn.vue'
 export default {
   data() {
     return {
@@ -67,14 +67,14 @@ export default {
     }
   },
   props: ['formData'],
-  components: { NextBtn, HeaderMain, ParagraphMain, PlanStyle, toggleSwitch, BackBtn },
+  components: { HeaderMain, ParagraphMain, PlanStyle, toggleSwitch },
   methods: {
-    next() {
-      this.$emit('next')
-    },
-    goBack() {
-      this.$emit('goBack')
-    },
+    // next() {
+    //   this.$emit('next')
+    // },
+    // goBack() {
+    //   this.$emit('goBack')
+    // },
     changeBilling() {
       const updatedPaidMonthly = !this.formData.paidMonthly
       this.$emit('updateFormData', 'paidMonthly', updatedPaidMonthly)
