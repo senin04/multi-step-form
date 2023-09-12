@@ -16,6 +16,7 @@
             :active="plan.name === formData.plan"
             @changeActive="updateActivePlan"
           />
+          
         </div>
         <div class="switch-container">
           <p :class="{ active: formData.paidMonthly }">Monthly</p>
@@ -140,5 +141,14 @@ export default {
 form {
   display: flex;
   flex-direction: column;
+}
+
+@media only screen and (max-width: 1000px) {
+  .planContainer {
+    flex-direction: column;
+  }
+  .switch-container{
+    margin-top: 20px;
+  }
 }
 </style>

@@ -54,6 +54,7 @@ export default {
 .personal-info {
   position: relative;
   z-index: 2;
+  /* height: 30px; */
 }
 form {
   display: flex;
@@ -83,5 +84,12 @@ input:focus {
 .flex-end {
   display: flex;
   justify-content: space-between;
+}
+
+@media only screen and (max-width: 1000px) {
+  .personal-info {
+    /* display: table-row; */
+    /* height: 100%; */
+  }
 }
 </style>

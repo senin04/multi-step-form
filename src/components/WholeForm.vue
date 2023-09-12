@@ -5,14 +5,13 @@
       <div class="right-container" :class="{ centered: step === 5 }">
         <div v-if="step === 1">
           <PersonalInfo v-if="step === 1" :formData="formData" @updateFormData="updateFormData" />
-          <div class="under-div">
+          <div class="under-div under-full-size">
             <NextBtn @goNext="nextStep" />
           </div>
-          
         </div>
         <div v-if="step === 2">
           <SelectPlan :formData="formData" @updateFormData="updateFormData" />
-          <div>
+          <div class="under-div under-full-size">
             <BackBtn @goBack="goBack" />
             <NextBtn @goNext="nextStep" />
           </div>
@@ -20,7 +19,7 @@
 
         <div v-if="step === 3">
           <AddOns :formData="formData" @updateFormData="updateFormData" />
-          <div>
+          <div class="under-div under-full-size">
             <BackBtn @goBack="goBack" />
             <NextBtn @goNext="nextStep" />
           </div>
@@ -28,12 +27,17 @@
 
         <div v-if="step === 4">
           <SummaryStep :formData="formData" @changePlan="changePlan" />
-          <div>
+          <div class="under-div under-full-size">
             <BackBtn @goBack="goBack" />
             <ConfirmBtn @goNext="nextStep" />
           </div>
         </div>
         <ThankYou v-if="step === 5" />
+      </div>
+      <div class="under-div" :class="{ 'under-small-size': step >= 1 && step <= 4 }">
+        <NextBtn v-if="step <= 3" @goNext="nextStep" />
+        <ConfirmBtn v-if="step === 4" @goNext="nextStep" />
+        <BackBtn v-if="step >= 2 && step <= 4" @goBack="goBack" />
       </div>
     </div>
   </body>
@@ -132,37 +136,54 @@ body {
   justify-content: center;
 }
 
+.under-small-size {
+  display: none;
+}
+
 @media only screen and (max-width: 1000px) {
   body {
     min-height: auto;
   }
   .container {
     background-color: hsl(217, 100%, 97%);
-    border: none;
     box-shadow: none;
     height: 90vh;
   }
+
   .right-container {
-    position: initial;
+    position: absolute;
     background-color: hsl(231, 100%, 99%);
-    border: none;
-    display: flex;
     z-index: 2;
     padding: 30px 25px;
     border-radius: 10px;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-    margin: 10px 0;
     margin-top: 100px;
-    width: 100%;
-    height: 450px;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
   }
-  .under-div{
+  .under-div {
     height: 60px;
-    width: 100%;
     position: absolute;
     bottom: 0;
     transform: translateY(100%);
+    left: 20px;
     right: 20px;
   }
+
+  .under-full-size {
+    display: none;
+  }
+
+  .under-small-size {
+    display: block;
+  }
 }
+
+@media only screen and (max-width: 500px) {
+  .right-container {
+    width: 90vw;
+  }
+  }
 </style>
