@@ -36,8 +36,6 @@
             >${{ countPrice()
             }}{{ formData.paidMonthly ? '/mo' : '/yr' }}</span
           ></p>
-      <!-- <BackBtn @goBack="goBack" />
-      <ConfirmBtn/> -->
     </form>
   </div>
 </template>
@@ -45,8 +43,6 @@
 <script>
 import HeaderMain from '../components/HeaderMain.vue'
 import ParagraphMain from '../components/ParagraphMain.vue'
-// import BackBtn from '../components/BackBtn.vue'
-// import ConfirmBtn from '../components/ConfirmBtn.vue'
 export default {
   data() {
     return {}
@@ -54,12 +50,6 @@ export default {
   components: { HeaderMain, ParagraphMain, },
   props: ['formData'],
   methods: {
-    // next() {
-    //   this.$emit('next')
-    // },
-    // goBack() {
-    //   this.$emit('goBack')
-    // },
     updateActive(name) {
       for (let i = 0; i < this.addons.length; i++) {
         if (this.addons[i].name === name) {

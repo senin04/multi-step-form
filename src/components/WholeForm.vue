@@ -3,36 +3,17 @@
     <div class="container">
       <LeftBox :step="step" />
       <div class="right-container" :class="{ centered: step === 5 }">
-        <div v-if="step === 1">
-          <PersonalInfo v-if="step === 1" :formData="formData" @updateFormData="updateFormData" />
-          <div class="under-div under-full-size">
-            <NextBtn @goNext="nextStep" />
-          </div>
+        <component
+          :is="currentStepComponent"
+          :formData="formData"
+          @updateFormData="updateFormData"
+          @changePlan="changePlan"
+        />
+        <div class="under-div under-full-size">
+          <NextBtn v-if="step <= 3" @goNext="nextStep" />
+          <ConfirmBtn v-if="step === 4" @goNext="nextStep" />
+          <BackBtn v-if="step >= 2 && step <= 4" @goBack="goBack" />
         </div>
-        <div v-if="step === 2">
-          <SelectPlan :formData="formData" @updateFormData="updateFormData" />
-          <div class="under-div under-full-size">
-            <BackBtn @goBack="goBack" />
-            <NextBtn @goNext="nextStep" />
-          </div>
-        </div>
-
-        <div v-if="step === 3">
-          <AddOns :formData="formData" @updateFormData="updateFormData" />
-          <div class="under-div under-full-size">
-            <BackBtn @goBack="goBack" />
-            <NextBtn @goNext="nextStep" />
-          </div>
-        </div>
-
-        <div v-if="step === 4">
-          <SummaryStep :formData="formData" @changePlan="changePlan" />
-          <div class="under-div under-full-size">
-            <BackBtn @goBack="goBack" />
-            <ConfirmBtn @goNext="nextStep" />
-          </div>
-        </div>
-        <ThankYou v-if="step === 5" />
       </div>
       <div class="under-div" :class="{ 'under-small-size': step >= 1 && step <= 4 }">
         <NextBtn v-if="step <= 3" @goNext="nextStep" />
@@ -56,7 +37,7 @@ import ConfirmBtn from './ConfirmBtn.vue'
 export default {
   data() {
     return {
-      step: 1,
+      step: 2,
       formData: {
         name: '',
         email: '',
@@ -73,6 +54,24 @@ export default {
       }
     }
   },
+  computed: {
+    currentStepComponent() {
+      switch (this.step) {
+        case 1:
+          return PersonalInfo
+        case 2:
+          return SelectPlan
+        case 3:
+          return AddOns
+        case 4:
+          return SummaryStep
+        case 5:
+          return ThankYou
+        default:
+          return null
+      }
+    }
+  },
   components: {
     LeftBox,
     AddOns,
@@ -86,7 +85,11 @@ export default {
   },
   methods: {
     nextStep() {
-      if (this.step < 5) {
+      if (this.step === 1) {
+        if (this.validatePersonalInfo()) {
+          this.step++
+        }
+      } else if (this.step < 5) {
         this.step++
       }
     },
@@ -98,6 +101,21 @@ export default {
     },
     changePlan() {
       this.step = 2
+    },
+    validatePersonalInfo() {
+      const isValidName = this.formData.name.trim() !== ''
+      const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
+      const isValidEmail =
+        this.formData.email.trim() !== '' && emailPattern.test(this.formData.email)
+      const phonePattern = /^\+\d{12}$/
+      const isValidPhone =
+        this.formData.phone.trim() !== '' && phonePattern.test(this.formData.phone)
+
+      this.nameError = !isValidName
+      this.emailError = !isValidEmail ? 'Invalid email format' : ''
+      this.phoneError = !isValidPhone ? 'Invalid phone number format' : ''
+
+      return isValidName && isValidEmail && isValidPhone
     }
   }
 }
@@ -185,5 +203,5 @@ body {
   .right-container {
     width: 90vw;
   }
-  }
+}
 </style>
