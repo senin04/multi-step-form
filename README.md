@@ -1,35 +1,19 @@
-# multi-step-form
+# Multi-step-form
 
-This template should help get you started developing with Vue 3 in Vite.
+## What's this?
 
-## Recommended IDE Setup
+This is a solution to a [Frontend Mentor](https://frontendmentor.io/) challenge.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+It´s a multi step form. Project was created without using figma or sketch version, so the design is purely based on pictures. It makes me understand Vue better.
 
-## Customize configuration
+The layout is fully responsive.
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+## Tools used
+- [Vue](https://vuejs.org/) 
+- [Visual Studio Code](https://code.visualstudio.com/)
 
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+- ### Desktop view 💻
+  ![](./public/images/desktop-design-step-1.jpg)
+  ![](./public/images/desktop-design-step-2-monthly.jpg)
+- ### Mobile view 📱
+  ![](./public/images/mobile-design-step-1.jpg)
