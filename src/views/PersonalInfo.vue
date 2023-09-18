@@ -66,6 +66,18 @@ export default {
     }
   },
 
+  
+  watch: {
+    'formData.isValid'(newValue) {
+      if (newValue) {
+        this.checkNameInput();
+        this.checkEmailInput();
+        this.checkPhoneInput();
+      }
+    }
+  },
+  
+
   methods: {
     checkNameInput() {
       this.nameError = !this.formData.name.trim()

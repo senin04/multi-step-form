@@ -6,13 +6,8 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      // component: Persona
+      component: () => import('../views/PersonalInfo.vue')
     },
-    // {
-    //   path: '/about',
-    //   name: 'about',
-    //   component: () => import('../views/AboutView.vue')
-    // }
   ]
 })
 

@@ -3,12 +3,15 @@
     <div class="container">
       <LeftBox :step="step" />
       <div class="right-container" :class="{ centered: step === 5 }">
+        <transition name="fade" mode="out-in">
         <component
           :is="currentStepComponent"
           :formData="formData"
           @updateFormData="updateFormData"
           @changePlan="changePlan"
+          :key="step"
         />
+        </transition>
         <div class="under-div under-full-size">
           <NextBtn v-if="step <= 3" @goNext="nextStep" />
           <ConfirmBtn v-if="step === 4" @goNext="nextStep" />
@@ -34,7 +37,7 @@ import ThankYou from '../views/ThankYou.vue'
 import NextBtn from './NextBtn.vue'
 import BackBtn from './BackBtn.vue'
 import ConfirmBtn from './ConfirmBtn.vue'
-export default {
+export default { 
   data() {
     return {
       step: 2,
@@ -43,6 +46,7 @@ export default {
         email: '',
         phone: '',
         plan: 'Arcade',
+        isValid: false,
         paidMonthly: true,
         planPrice: 9,
         onlineService: true,
@@ -86,6 +90,7 @@ export default {
   methods: {
     nextStep() {
       if (this.step === 1) {
+        this.formData.isValid=true;
         if (this.validatePersonalInfo()) {
           this.step++
         }
@@ -156,6 +161,13 @@ body {
 
 .under-small-size {
   display: none;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.2s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }
 
 @media only screen and (max-width: 1000px) {
