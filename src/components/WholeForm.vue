@@ -4,13 +4,13 @@
       <LeftBox :step="step" />
       <div class="right-container" :class="{ centered: step === 5 }">
         <transition name="fade" mode="out-in">
-        <component
-          :is="currentStepComponent"
-          :formData="formData"
-          @updateFormData="updateFormData"
-          @changePlan="changePlan"
-          :key="step"
-        />
+          <component
+            :is="currentStepComponent"
+            :formData="formData"
+            @updateFormData="updateFormData"
+            @changePlan="changePlan"
+            :key="step"
+          />
         </transition>
         <div class="under-div under-full-size">
           <NextBtn v-if="step <= 3" @goNext="nextStep" />
@@ -37,10 +37,10 @@ import ThankYou from '../views/ThankYou.vue'
 import NextBtn from './NextBtn.vue'
 import BackBtn from './BackBtn.vue'
 import ConfirmBtn from './ConfirmBtn.vue'
-export default { 
+export default {
   data() {
     return {
-      step: 2,
+      step: 1,
       formData: {
         name: '',
         email: '',
@@ -90,7 +90,7 @@ export default {
   methods: {
     nextStep() {
       if (this.step === 1) {
-        this.formData.isValid=true;
+        this.formData.isValid = true
         if (this.validatePersonalInfo()) {
           this.step++
         }
@@ -163,10 +163,12 @@ body {
   display: none;
 }
 
-.fade-enter-active, .fade-leave-active {
+.fade-enter-active,
+.fade-leave-active {
   transition: opacity 0.2s;
 }
-.fade-enter, .fade-leave-to {
+.fade-enter,
+.fade-leave-to {
   opacity: 0;
 }
 
@@ -214,6 +216,16 @@ body {
 @media only screen and (max-width: 500px) {
   .right-container {
     width: 90vw;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .right-container {
+    width: 90vw;
+    margin-top: 50px;
+  }
+  body {
+    min-height: 100vh;
   }
 }
 </style>
