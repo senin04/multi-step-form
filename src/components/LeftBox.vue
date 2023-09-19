@@ -53,7 +53,7 @@ export default {
 <style scoped>
 .containerOne {
   color: hsl(0, 0%, 100%);
-  background-image: url('/images/bg-sidebar-desktop.svg');
+  background-image: url('../images/bg-sidebar-desktop.svg');
   width: 274px;
   padding: 30px;
   background-repeat: no-repeat;
