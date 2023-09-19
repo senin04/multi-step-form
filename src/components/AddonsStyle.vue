@@ -3,7 +3,7 @@
   <label :for="id">
     <div class="box" :class="{ choosen: active }">
       <div class="small-container">
-        <img src="images/icon-checkmark.svg" :class="{ choosen: active }" />
+        <img src="/images/icon-checkmark.svg" :class="{ choosen: active }" />
         <div>
           <div class="bold-text">{{ name }}</div>
           <p>{{ text }}</p>
